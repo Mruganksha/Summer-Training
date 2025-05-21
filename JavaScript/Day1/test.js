@@ -26,3 +26,15 @@ console.log(typeof "mru");
 console.log(typeof 13);
 console.log(typeof null); //null is object
 console.log(typeof undefined);
+
+//conversion
+let score = "23ab"
+let valueInNumber = Number(score)
+
+//"33" --> 33
+//"23aqb" -> NaN
+//1 -> true; 0 -> false
+//"" -> false
+// "kdwl" -> true
+//console.log("2" + 1 + 2) : 212 in string
+//console.log(1 + 2 + "2") : 32 
