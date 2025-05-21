@@ -1,0 +1,19 @@
+{
+  "name": "training",
+  "version": "22.14.0",
+  "description": "javascript",
+  "main": "yes",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mruganksha/Summer-Training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mruganksha/Summer-Training/issues"
+  },
+  "homepage": "https://github.com/Mruganksha/Summer-Training#readme"
+}
