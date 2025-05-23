@@ -30,7 +30,6 @@ const student = {
     age: 20,
     grades: [85, 90, 78, 92, 88],
   
-    // Method to calculate average grade
     calculateAverage: function () {
       if (this.grades.length === 0) return 0;
       const sum = this.grades.reduce((acc, curr) => acc + curr, 0);
