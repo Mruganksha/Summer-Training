@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+  //  document.getElementById('owl').onclick = function(){
+   //     alert("owl clicked")
+   // } -- not that optimized
+
+ // document.getElementById('owl').addEventListener('click', function(){
+   // alert("owl clicked")
+  //})
+
+  //attachEvent()
+  //jQuery - on  ; is also used
+  
+  //type, timestamp, dafaultPrevented
+  //target, toElement, srcElement, currentTarget
+  //clientX, clientY, screenX, scrrenY
+
+ /* document.getElementById('images').addEventListener('click', function(e){
+    console.log("CLciked inside the url");
+  }, false) 
+
+  document.getElementById('owl').addEventListener('click', function(e){
+    console.log("owls clicked");
+    e.stopPropagation() //now bubble wil stop after this fun execution and the outer function of images will not run for owl
+  }, false)  //here false is by default (it works even if false is not mentioned)
+  
+  //here owl comes inside images so when we click on owl both the functions will execute 1st owl will be executed and then images..this is know as bubbling going from smaller to bigger
+
+  document.getElementById('google').addEventListener(
+    'click', function(e){
+        e.preventDefault()
+        e.stopPropagation()
+        console.log("goggle clicked")
+    }, false
+  )
+*/
+  //now try to vanish images after clciking on it
+  document.querySelector('#images').addEventListener(
+    'click', function(e){
+        console.log(e.target.parentNode)
+        if(e.target.tagName === 'IMG'){
+            console.log(e.target.id)
+            let removeIt = e.target.parentNode
+            removeIt.remove()
+        }
+        //there is one more method to remove 
+        //removeIt.parentNode.removeChild(removeIt)
+    }
+  )
+</script>
+</html>
