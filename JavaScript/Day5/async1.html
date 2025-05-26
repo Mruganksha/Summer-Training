@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Summer Training</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    const sayHello = function(){
+        console.log("hello world")
+    }
+    //used to change the h1 text
+    const changeText = function(){
+        document.querySelector('h1').innerHTML = "javascript series"
+    }
+    const changeMe = setTimeout(changeText, 2000)
+    //now how to stop the text from being changed
+    //clearTimeout(changeMe) ; there is no use if we directly write like this we need to pass it to some event
+
+    document.querySelector('#stop').addEventListener('click', function(){
+        clearTimeout(changeMe)
+        console.log("Stopped")
+    })
+</script>
+</html>
