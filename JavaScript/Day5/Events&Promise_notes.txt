@@ -1,0 +1,41 @@
+Mostly events are executed sequentially
+
+Event	Description
+- onchange:	An HTML element has been changed
+- onclick: The user clicks an HTML element
+- onmouseover:	The user moves the mouse over an HTML element
+- onmouseout:	The user moves the mouse away from an HTML element
+- onkeydown:	The user pushes a keyboard key
+- onload:	The browser has finished loading the page
+
+
+
+
+#ASYNC JAVASCRIPT
+
+- javascript is synchronous and single threaded
+- exectution context : execute one line of code at a time (each operation waits for the last one to complete before executing)
+
+Blocking Code      vs     Non-Blocking Code
+    |                         |
+Block the flow of program     Does not block execution
+(Read ffile sync)                  (read file Async)
+
+
+/*  //used when u want to run something in loop
+   const sayDate = function(str){
+        console.log(str, Date.now());
+    }
+    const intervalId = setInterval(sayDate, 2000, "hi")
+    clearInterval(intervalId)*/
+
+
+#PROMISE
+the promise object represents the eventual completion (or failure) of an asynchronus operation and its resulting value.
+
+a promise is of three states:
+- pending: initial state, neither fulfilled nor rejected
+- fufilled: meaning that the operation was completed successfully
+- rejected: meaning that the operation failed
+
+(mostly we consume promises)
