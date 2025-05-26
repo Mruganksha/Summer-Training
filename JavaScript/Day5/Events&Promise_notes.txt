@@ -9,7 +9,7 @@ Event	Description
 - onload:	The browser has finished loading the page
 
 
-
+----------------------------------------------------------------------------------------------
 
 #ASYNC JAVASCRIPT
 
@@ -29,6 +29,7 @@ Block the flow of program     Does not block execution
     const intervalId = setInterval(sayDate, 2000, "hi")
     clearInterval(intervalId)*/
 
+------------------------------------------------------------------------------------------
 
 #PROMISE
 the promise object represents the eventual completion (or failure) of an asynchronus operation and its resulting value.
