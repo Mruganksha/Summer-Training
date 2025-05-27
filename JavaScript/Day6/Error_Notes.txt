@@ -10,6 +10,8 @@ TYPES:
 - TypeError: occur when a variable or parameter is not of a valid Type
 - AggregateError: creates an instance representing several errors wrapped in a single error when multiple errors need to be reported by oeration, eg: Promise.any()
 - URIError: an error in encodeURI() has occured
+
+//new version of js do not throw EvalError, use syntaxError
 --------------------------------------------------------
 
 Error() : creates a new error object
