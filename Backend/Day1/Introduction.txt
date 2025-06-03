@@ -12,3 +12,7 @@ understanding HTTP module
 
 //Working with node and npm
 -npm init : creates package.json
+
+
+//HTTP AND HTTPS
+- http: protocol (due to this protocol all the transfer of data on internet takes place)
