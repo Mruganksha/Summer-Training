@@ -1,0 +1,14 @@
+//Node.js basics
+Introduction to node.js
+installing node.js and npm
+working with modules
+file system operations
+understanding HTTP module
+
+- Node js is not a programming language, package, framework it is js runtime environment.
+(jab tk node rahega tb tk we can create server from js)
+- node is basically a system where we provide js code to a V8 chrome system which is in c++ wrapped by js
+- npm packages where codes are stored and we can borrow it
+
+//Working with node and npm
+-npm init : creates package.json
