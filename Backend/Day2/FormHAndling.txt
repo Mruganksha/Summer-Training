@@ -1,0 +1,41 @@
+form handling and working with the forms:
+
+-handle backend process of forms and making sure the data coming from any frontend lib, fw, templating engines, we still handle it
+
+-Session ... Cookie
+-Cookies: 
++ they are small text files stored on users browser.
++ they are primarily used to store client side data such as user preference, authentication tokens.
++ Cookies can be accessed by both the web server and client-side JavaScript.
+They are often used to maintain user sessions by storing a session ID that identifies the user on subsequent requests.
+
+-Session:
++ Sesion store user data on server side
++ They are typically used to store sensitive information that should not be exposed to the client.
++ Sessions are associated with a unique session ID, which is usually stored in a cookie on the client's browser.
++ When a user sends a request, the server uses the session ID to retrieve the corresponding session data.
+
+
+- how to get data from frontend at backend route
+- setting up parsers for form
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+- setting up ejs for ejs pages  (jo frontend dikhega that is ejs, it is like html)
+install ejs from npm
+setup ejs as a middleware for view engine or setup ejs as a view engine
+
+- setting up public static files 
+- to setup all pages like css and js of frontend and images also
+
+//dynamic routing:
+sometimes there are many routes that have some part of it exactly same
+like :
+/profile/mru
+/profile/mruganksha
+so here profile is same everywhere so here we need to make diff routes for each so here dynamic routing is used
+
+steps:
+1st go to browser , write the url u want then craete that url and send any response
+now search for the part which is dynamic and make : infromt of it
+/profile/:mru now due to that colon that mru part is dynamic it can work for any other name as well
