@@ -14,3 +14,5 @@
 // devdependencies : packages which depend or are used only in development
 
 //scripts - understanding default scripts PATH and custom scripts
+//npm test and start are inbuilt
+//npm run dev ; here dev is tyemporray it runs if mentioned in script and run finds it in script
