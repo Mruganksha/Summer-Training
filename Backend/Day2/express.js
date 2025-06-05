@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const fs = require('fs');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public'))); //means static ch sgla will be in public
+app.use('/files', express.static(path.join(__dirname, 'files')))
 app.set('view engine', 'ejs'); //this line tells from where we are supposed to render the frontend
 
 //this 2 lines are parsers
@@ -15,7 +17,26 @@ app.set('view engine', 'ejs'); //this line tells from where we are supposed to r
 //means we send a plain text and server contains blob contain in unreadable format
 
 app.get("/", function(req, res){
-    res.render("index");
+    fs.readdir('./files', function(err, files){
+        res.render("index", {files: files}); //send details of files in the upper files
+    })
+});
+
+//this is used when we click on readmore to open a particular task
+app.get("/file/:filename", function(req, res){
+    //readFile
+    fs.readFile(`./files/${req.params.filename}`, "utf-8", function(err, filedata){
+        res.render('show', {filename: req.params.filename, filedata: filedata});
+    })
+});
+//utf-8 makes the data visible in english , if its not used then it will appear in binary
+
+//we can only see the data in input and textarea when u provide a name
+app.post("/create", function(req, res){
+    //now create file
+    fs.writeFile(`./files/${req.body.title.split(' ').join('')}.txt`, req.body.details, function(err){
+        res.redirect("/");
+    })
 });
 
 app.listen(3000, function(){
