@@ -16,3 +16,14 @@ understanding HTTP module
 
 //HTTP AND HTTPS
 - http: protocol (due to this protocol all the transfer of data on internet takes place)
+
+//HTTP METHODS EXPRESS:
+GET – Retrieve data
+POST – Send new data
+PUT – Update existing data
+DELETE – Remove data
+
+--POST Request Basics
+Used when a client wants to send data (usually from a form or JSON) to the server. For Express to read incoming data, you need middleware to parse the request body.
+
+-Postman is a tool that helps you test APIs by simulating HTTP requests.

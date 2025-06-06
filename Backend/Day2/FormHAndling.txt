@@ -19,14 +19,32 @@ They are often used to maintain user sessions by storing a session ID that ident
 - how to get data from frontend at backend route
 - setting up parsers for form
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+-This line tells your Express server to automatically **parse incoming JSON requests**.
+When is it used?
+* When you're sending JSON data to your server using:
+  * `fetch` or `axios` from frontend
+  * `Postman` with `Body -> raw -> JSON`
+  * Mobile apps or API clients that send JSON
+----------------------------------
 
+app.use(express.urlencoded({extended: true}));
+-This parses **URL-encoded data** (like form submissions from HTML forms).
+#### When is it used?
+* When a user submits an HTML form with:
+  ```html
+  <form method="POST" action="/submit">
+      <input name="email" value="a@gmail.com">
+  </form>
+
+--------------------------------------------------------
 - setting up ejs for ejs pages  (jo frontend dikhega that is ejs, it is like html)
 install ejs from npm
 setup ejs as a middleware for view engine or setup ejs as a view engine
+--------------------------------------------------
 
 - setting up public static files 
 - to setup all pages like css and js of frontend and images also
+----------------------------------------------------
 
 //dynamic routing:
 sometimes there are many routes that have some part of it exactly same
