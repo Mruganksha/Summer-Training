@@ -23,13 +23,24 @@ app.get("/", function(req, res){
 });
 
 //this is used when we click on readmore to open a particular task
-app.get("/file/:filename", function(req, res){
+app.get("/files/:filename", function(req, res){
     //readFile
     fs.readFile(`./files/${req.params.filename}`, "utf-8", function(err, filedata){
         res.render('show', {filename: req.params.filename, filedata: filedata});
     })
 });
 //utf-8 makes the data visible in english , if its not used then it will appear in binary
+
+app.get("/edit/:filename", function(req, res){
+    res.render('edit', {filename: req.params.filename});
+});//now we need to see the name in previous tab so call it
+//to edit
+
+app.post("/edit", function(req, res){
+    fs.rename(`./files/${req.body.previous}`, `./files/${req.body.new}`, function(err){
+        res.redirect("/");
+    })
+});
 
 //we can only see the data in input and textarea when u provide a name
 app.post("/create", function(req, res){

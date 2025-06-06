@@ -1,0 +1,46 @@
+//Data Storage:
+-we can store data in .txt file but it is not efficient as imgs and all can't be stored so database 
+
+//TYPES OF DBS: SQL | NoSQL
+-SQL: data ko ek type mein rkhtay
+-NoSQL : data is stored in form of objects (MongoDB follows NoSQL)
+
+//what and why:
+MongoDB is database
+
+//terminologies - collections, documents, schemas, keys, modules
+
+there are 2 servers :
+application server            and               database server
+    |                                                   | 
+it handles the routes and requests              handles all the data
+it does everything except for data
+like login logout
+if it requoires any kind of data 
+it sends request to database,
+accepts responses from database and
+pass it to frontend
+
+
+#DATABASE SERVER:
+
+DataBase -> Collections -> Document
+
+suppose there is a huge database which conatins many diff data projects like A, B, C, D, E and A projects contain again differents data in it , so all this datas in it are knows as collections
+like suppose A have diff data of customers, users, shops so all this are collections.
+now collection ke andhr there is documents
+
+-------------------------------------------------------------------------
+CODE                       DATABASE
+mongoose.connect ->  database create
+model create     ->  collection
+CREATE           -> document
+
+----------------------------------------------
+-ORM (object-relational mapping) and ODM(object document mapping) are techniques used in software development to simplify database interactions
+they act as a bridge between the application code and database
+
+-ORMs are designed to work with relational databases (RDBMS) like MySQL, PostgreSQL, and SQL Server.
+-ODMs are designed to work with document databases (NoSQL) like MongoDB.
+
+CRUD   : create read update delete
