@@ -1,0 +1,22 @@
+//Authentication And Authorization
+
+1. How to set Cookie
+-----------------------------
+2. How to use bcrypt for password encryption and decryption
+- we cannot save password directly as it can be hacked easily
+so we need to encrypt it
+means password => jkenwkolQBFY397IUYHNFANLDIQJFN //shpuld get converted into arandom string
+
+-this was hash for my pw:mkudake:  $2b$10$0XfXSQQogvU9FeV5kHhPzuzhEa0bmWJ1wi1wjwSPQEmoPoNWNAhg6
+----------------------------------------------------------------------
+
+3. what is jwt and how is data stored in it and how it i sremoved
+
+-jwt is made up of 3 parts
+//this 3 is decoded part
+1.Header: algorithm and token type
+2.PayLoad: data
+3.Verify Signature
+
+//it is converted to encoded random string which is send to the browser by the server as a identifire string
+like suppose u have 2 users both loggin then u create a string unique for both and send it to them, it is a unique thing so mostly emailid are used as they r unique and then when next time the user ask for anything then that string is attached with the req by which the server identifies the user , the server then decodes that is decrypts that string back to the 3 parts to identify.
