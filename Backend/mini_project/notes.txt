@@ -1,0 +1,8 @@
+Tasks:
+-users should be able to write post
+-users create krne hai
+-login and register
+-logout
+-post creation
+-post like
+-post delete (only option for the owner of the post)
