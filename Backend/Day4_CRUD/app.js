@@ -38,7 +38,7 @@ app.post('/create', async (req, res) => {
     let {name, email, image} = req.body;
     try {
     let createdUser = await userModel.create({ name, email, image });
-    res.redirect("/read");
+    res.redirect("/read");  
   } catch (err) {
     res.status(500).send("User creation failed: " + err.message);
   }
