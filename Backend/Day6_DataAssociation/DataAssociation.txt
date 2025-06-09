@@ -1,0 +1,7 @@
+-embending: means when the exact physical copy of data is stored in 2 similar locations like one is stored in users data and one in admin
+           - it is prefered if time is teh priority, but not feasible as more space is required
+-reference: means at one place actual data is stored and on other its identity will be stored which will redirect to the original data.
+
+we are using reference:
+
+post will have ids of user and user will have ids of post
