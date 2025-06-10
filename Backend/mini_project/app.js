@@ -19,9 +19,22 @@ app.get("/login", (req, res) => {
    res.render("login");
 })
 
-app.get("/profile", isLoggedIn, (req, res) => {
-    console.log(req.user);
-   res.render("login");
+app.get("/post", isLoggedIn, async (req, res) => {
+    let user = await userModel.findOne({email: req.user.email});
+    let {content} = req.body;
+
+    let post = await postModel.create({
+        user: user._id,
+        content
+    })
+    user.posts.push(post._id);
+    await user.save();
+    res.redirect("/profile")
+})
+//this two should be visible after login so that function is included
+app.get("/profile", isLoggedIn, async (req, res) => {
+    let user = await userModel.findOne({email: req.user.email}).populate("posts");
+   res.render("profile", {user});
 })
 
 app.post("/register", async (req, res) => {
@@ -42,7 +55,7 @@ app.post("/register", async (req, res) => {
             name,
             password: hash
         });
-        let token = jwt.sign({email: email, userid: username}, "shhh");
+        let token = jwt.sign({email: email, userid: user.username  }, "shhh");
         res.cookie("token", token);
         res.send("Registered")
     })
@@ -61,11 +74,11 @@ app.post("/login", async (req, res) => {
    //now check if pw is correct
    bcrypt.compare(password, user.password, function(err, result){
     if(result){
-        let token = jwt.sign({email: email, userid: username}, "shhh");
+        let token = jwt.sign({email: email, userid: user.username}, "shhh");
         res.cookie("token", token);
-        res.status(200).send("you can login");
+        res.status(200).redirect("/profile");
     } else{
-        res.status(401).send("Incorrect password");
+        res.status(401).send("Password or Username is wrong");
         res.send("Password or Username is wrong")
     }
    })
@@ -73,17 +86,25 @@ app.post("/login", async (req, res) => {
 
 app.get("/logout", (req, res) => {
     res.cookie("token", "");
-   res.redirect("index");
+   res.redirect("/");
 })
 
-function isLoggedIn(req, res, next){
-    if(req.cookies.token === ""){
-        res.send("You must be Logged In");
-    } else {
-        let data = jwt.verify(req.cookies.token, "shhh")
-        req.user = data
+function isLoggedIn(req, res, next) {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.redirect("/login");
     }
-    next();
+
+    try {
+        const data = jwt.verify(token, "shhh");
+        req.user = data;
+        next();
+    } catch (err) {
+        console.error("JWT error:", err.message);
+        res.redirect("/login");
+    }
 }
+
 
 app.listen(3000);
