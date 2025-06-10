@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 mongoose.set("strictQuery", true);
 
-mongoose.connect("mongodb://127.0.0.1:27017");
+mongoose.connect("mongodb://127.0.0.1:27017/postsApp");
 
 const userSchema = mongoose.Schema({
     username: String,
@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
     age: Number,
     email: String,
     password: String,
-    post: [
+    posts: [
        {type: mongoose.Schema.Types.ObjectId,
         ref: "post"
        },
