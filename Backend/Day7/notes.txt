@@ -1,0 +1,108 @@
+# Input validation:
+validation is imp process in expressjs which ensures that the data recevied by serevr fulfills the specific requiremnets or rules before it is processed further.
+1. npm install express-validdator
+2. const { body, validationResult } = require('express-validator');
+
+app.post('/submit',
+    // Example validation for email field
+    body('email').isEmail().normalizeEmail(),
+    (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400)
+                .json({ errors: errors.array() });
+        }
+        // If validation passes, process the form
+        // ...
+        res.send('Form submitted successfully!');
+    }
+);
+
+4. Use validation middleware provided by express-validator to define validation rules for each field in your request body.
+
+--------------------------------------------------------------------------
+#ERROR HANDLING:
+
+-it is a process of managing errors that occur during execution of a request. 
+- when an error occurs in middleware or route , express provides mechanisms to catch these errors and prevent the application from crashing.
+- Error Detection: Automatically detects issues, such as bad requests or server failures.
+- Error-Handling Middleware: Uses special middleware to catch and process errors in a structured way.
+- Passing Errors: Errors in routes are passed to the middleware using next(err).
+- Logging: Errors are logged to help developers quickly identify and resolve issues.
+- User-Friendly Responses: Express sends clear, non-technical messages to users instead of showing stack traces.
+
+TYPES OF ERROR HANDLING:
+
+1.Default error handler:
+  ---------------------
+Express has a built-in error handler that catches any errors that are not handled. If you don't create your own error handler, Express will automatically send a simple "500 Internal Server Error" response.
+
+2. Custom Error-Handling Middleware:
+------------------------------------
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  throw new Error("Something broke!");
+});
+
+// Custom error-handling middleware
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).json({ message: "Oops! Something went wrong." });
+});
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+
+3. Synchronous Error Handling: 
+-----------------------------
+Express automatically catches errors in synchronous functions. If an error is thrown inside a route, it is sent to the error handler.
+
+const express = require("express");
+const app = express();
+
+app.get("/sync-error", (req, res) => {
+  throw new Error("Synchronous error occurred!");
+});
+
+// Custom error handler
+app.use((err, req, res, next) => {
+  res.status(500).json({ message: err.message });
+});
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+
+4.Asynchronous Error Handling: 
+------------------------------
+Unlike errors in normal functions, errors in async functions are not caught automatically by Express. You need to handle them manually using try-catch or pass them to Express using next(err).
+
+const express = require("express");
+const app = express();
+
+app.get("/async-error", async (req, res, next) => {
+  try {
+    await Promise.reject(new Error("Async error occurred!"));
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Error handler middleware
+app.use((err, req, res, next) => {
+  res.status(500).json({ message: err.message });
+});
+
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+
+
+
+
+multer- it is used when we want to transfer files like imgs documents
+
+-multer will not process any form which is not multipart
