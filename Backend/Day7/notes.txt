@@ -108,3 +108,8 @@ multer- it is used when we want to transfer files like imgs documents
 -multer will not process any form which is not multipart
 
 enctype="multipart/form-data" is imp necessary to insert in forms for using multer
+
+
+In case of multer:
+-disk stoarge : we upload files in server
+-memory storage: in database

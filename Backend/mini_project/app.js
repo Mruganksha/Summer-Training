@@ -6,26 +6,59 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const upload = require("./config/multerconfig")
+const path = require("path");
+//const multer = require("multer");
 
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
-   res.render("index");
+/*
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/images/uploads')
+    }, //here we are setting file name
+    filename: function(req, file, cb){
+        crypto.randomBytes(12, function(err, bytes){
+            //here 1st we made hexadecimal string and then added extension to it
+            const fn = bytes.toString("hex") + path.extname(file.originalname); //file.originalname means the actual name of file which is seen in the users pc, this whole syntax returns the extension of that file
+            cb(null, file.fieldname, fn) //here null is eror
+        })
+    }
 })
+
+const upload = multer({storage: storage})
 
 app.get("/test", (req, res) => {
    res.render("test");
 })
 
-app.post("/upload", (req, res) => {
-   
+app.post("/upload", upload.single("image"), (req, res) => {
+     console.log(req.file)
+})
+//this we are closing for sometime bea now industry standard we are following
+*/
+
+app.get("/", (req, res) => {
+   res.render("index");
 })
 
 app.get("/login", (req, res) => {
    res.render("login");
+})
+
+app.get("/profile/upload", (req, res) => {
+   res.render("profileupload");
+})
+
+app.post("/upload", isLoggedIn, upload.single("image"), async (req, res) => {
+   let user = await userModel.findOne({email: req.user.email})
+   user.profilepic = req.file.filename
+   await user.save();
+   res.redirect("/profile")
 })
 
 app.post("/post", isLoggedIn, async (req, res) => {
